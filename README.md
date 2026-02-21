@@ -32,3 +32,8 @@ TOOL_EXEC_WRITE_OK
 ## News UI improvements
 - Filter by title (`q`) and author (`author`)
 - Pagination for news feed
+
+## News API filters
+- `GET /api/posts/?q=<title>`
+- `GET /api/posts/?author=<author>`
+- `GET /api/posts/?is_published=true|false`
