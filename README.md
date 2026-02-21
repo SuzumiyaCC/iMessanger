@@ -23,3 +23,4 @@ Django-портал для внутренних новостей, блога и 
 ## Initial API endpoints
 - `GET/POST /api/employees/`
 - `GET/POST /api/posts/`
+TOOL_EXEC_WRITE_OK
