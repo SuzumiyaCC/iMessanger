@@ -75,6 +75,7 @@ class EmployeeViewSet(viewsets.ModelViewSet):
                 "cta": {
                     "type": cta_type,
                     "link": cta_link,
+                    "preferred_channel": cta_type,
                 },
             }
         )
