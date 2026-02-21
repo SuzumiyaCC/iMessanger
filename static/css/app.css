@@ -25,3 +25,9 @@ body { margin: 0; font-family: "Segoe UI", "Noto Sans", sans-serif; background: 
 .muted { color: #64748b; font-size: 13px; }
 .pagination { margin: 16px 0 4px; display: flex; align-items: center; gap: 14px; }
 .pagination a { text-decoration: none; color: #0f766e; font-weight: 600; }
+
+.employee-filters { margin: 10px 0 16px; }
+.employees-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+.employee-card h3 { margin: 0 0 8px; }
+.employee-card a { color: #0f766e; text-decoration: none; }
+.employee-card a:hover { text-decoration: underline; }
