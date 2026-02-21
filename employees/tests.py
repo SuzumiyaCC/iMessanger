@@ -78,6 +78,7 @@ class EmployeeApiSearchPaginationTests(APITestCase):
         self.assertEqual(response.data["quick_contact"]["email"], "ivanov@example.com")
         self.assertEqual(response.data["quick_contact"]["messenger"], "@ivanov")
         self.assertEqual(response.data["cta"]["type"], "phone")
+        self.assertEqual(response.data["cta"]["preferred_channel"], "phone")
         self.assertEqual(response.data["cta"]["link"], "tel:+79990001122")
 
     def test_quick_contact_fallbacks_to_email_when_phone_empty(self):
@@ -86,4 +87,5 @@ class EmployeeApiSearchPaginationTests(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["cta"]["type"], "email")
+        self.assertEqual(response.data["cta"]["preferred_channel"], "email")
         self.assertEqual(response.data["cta"]["link"], "mailto:petrova@example.com")

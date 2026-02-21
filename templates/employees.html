@@ -18,13 +18,13 @@
     <p><a href="mailto:{{ e.email }}">{{ e.email }}</a></p>
     {% if e.phone %}<p>{{ e.phone }}</p>{% endif %}
 
-    <div class="employee-cta-row">
+    <div class="employee-cta-row" data-quick-contact-url="/api/employees/{{ e.id }}/quick-contact/">
       {% if e.phone %}
-        <a class="cta-btn" href="tel:{{ e.phone }}">Связаться</a>
+        <a class="cta-btn" href="tel:{{ e.phone }}">Связаться в 1 клик</a>
       {% elif e.email %}
-        <a class="cta-btn" href="mailto:{{ e.email }}">Связаться</a>
+        <a class="cta-btn" href="mailto:{{ e.email }}">Связаться в 1 клик</a>
       {% else %}
-        <a class="cta-btn" href="/api/employees/{{ e.id }}/quick-contact/" target="_blank" rel="noopener">Связаться</a>
+        <a class="cta-btn" href="/api/employees/{{ e.id }}/quick-contact/" target="_blank" rel="noopener">Связаться в 1 клик</a>
       {% endif %}
 
       <a class="api-link" href="/api/employees/{{ e.id }}/quick-contact/" target="_blank" rel="noopener">
