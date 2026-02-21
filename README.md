@@ -33,11 +33,30 @@ Django-портал для внутренних новостей, блога и 
 - `GET /api/employees/?q=<text>` — search by full name, position or email
 - `GET /api/employees/?department=<name>` — filter by department
 - `GET /api/employees/?q=<text>&department=<name>&page=2&page_size=10` — combined filters + pagination
+- API возвращает только активных сотрудников (`is_active=true`) для клиентского каталога.
 
 Example request:
 ```bash
 curl -H "Authorization: Token <TOKEN>" \
   "http://localhost:8000/api/employees/?q=иванов&department=hr&page=1&page_size=10"
+```
+
+Example response envelope:
+```json
+{
+  "count": 42,
+  "next": "http://localhost:8000/api/employees/?page=2&page_size=10",
+  "previous": null,
+  "page": 1,
+  "page_size": 10,
+  "results": [
+    {
+      "id": 1,
+      "full_name": "Иван Иванов",
+      "department": "HR"
+    }
+  ]
+}
 ```
 
 ## News UI improvements

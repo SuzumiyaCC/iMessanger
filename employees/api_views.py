@@ -6,7 +6,8 @@ from .serializers import EmployeeSerializer
 
 
 class EmployeeViewSet(viewsets.ModelViewSet):
-    queryset = Employee.objects.all().order_by("full_name", "id")
+    # API-каталог ограничиваем активными сотрудниками для мобильного клиента.
+    queryset = Employee.objects.filter(is_active=True).order_by("full_name", "id")
     serializer_class = EmployeeSerializer
     pagination_class = EmployeeMobilePagination
 
@@ -23,4 +24,6 @@ class EmployeeViewSet(viewsets.ModelViewSet):
             )
         if dept:
             qs = qs.filter(department__icontains=dept)
-        return qs
+
+        # distinct() защищает от дубликатов при расширении поиска/джойнах в будущем.
+        return qs.distinct()
