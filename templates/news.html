@@ -1,11 +1,36 @@
 {% extends "base.html" %}
 {% block content %}
 <h2>Новости</h2>
-<ul class="list">
+
+<form method="get" class="news-filters card">
+  <div class="filters-grid">
+    <input type="text" name="q" value="{{ q }}" placeholder="Поиск по заголовку" />
+    <input type="text" name="author" value="{{ author }}" placeholder="Автор" />
+    <button type="submit">Фильтр</button>
+  </div>
+</form>
+
+<div class="news-grid">
   {% for p in posts %}
-  <li><strong>{{ p.title }}</strong> — {{ p.summary }}</li>
+  <article class="card news-card">
+    <h3>{{ p.title }}</h3>
+    <p class="muted">Автор: {{ p.author }} · {{ p.created_at|date:"d.m.Y H:i" }}</p>
+    <p>{{ p.summary|default:p.content|truncatechars:180 }}</p>
+  </article>
   {% empty %}
-  <li>Публикаций пока нет.</li>
+  <div class="card">Публикаций пока нет.</div>
   {% endfor %}
-</ul>
+</div>
+
+{% if is_paginated %}
+<nav class="pagination">
+  {% if page_obj.has_previous %}
+    <a href="?q={{ q }}&author={{ author }}&page={{ page_obj.previous_page_number }}">← Назад</a>
+  {% endif %}
+  <span>Страница {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+  {% if page_obj.has_next %}
+    <a href="?q={{ q }}&author={{ author }}&page={{ page_obj.next_page_number }}">Вперед →</a>
+  {% endif %}
+</nav>
+{% endif %}
 {% endblock %}

@@ -15,3 +15,13 @@ body { margin: 0; font-family: "Segoe UI", "Noto Sans", sans-serif; background: 
 .card { background: var(--card); border-radius: 14px; padding: 16px; box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08); border: 1px solid #e2e8f0; }
 .list { background: var(--card); border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px 20px; }
 .list li { margin-bottom: 8px; }
+
+.news-filters { margin: 10px 0 16px; }
+.filters-grid { display: grid; gap: 10px; grid-template-columns: 1fr 1fr auto; }
+.filters-grid input { border: 1px solid #d1d5db; border-radius: 10px; padding: 10px 12px; }
+.filters-grid button { border: 0; border-radius: 10px; padding: 10px 14px; background: var(--accent); color: #fff; font-weight: 600; }
+.news-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.news-card h3 { margin: 0 0 8px; }
+.muted { color: #64748b; font-size: 13px; }
+.pagination { margin: 16px 0 4px; display: flex; align-items: center; gap: 14px; }
+.pagination a { text-decoration: none; color: #0f766e; font-weight: 600; }
