@@ -24,3 +24,11 @@ Django-портал для внутренних новостей, блога и 
 - `GET/POST /api/employees/`
 - `GET/POST /api/posts/`
 TOOL_EXEC_WRITE_OK
+
+## Auth API endpoints
+- `POST /api/auth/login/` (username/password -> token)
+- `GET /api/auth/me/` (Bearer token required)
+
+## News UI improvements
+- Filter by title (`q`) and author (`author`)
+- Pagination for news feed
