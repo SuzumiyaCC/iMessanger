@@ -29,6 +29,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corp_portal.audit.AuditTrailMiddleware",
 ]
 
 ROOT_URLCONF = "corp_portal.urls"
