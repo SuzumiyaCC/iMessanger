@@ -87,3 +87,8 @@ Open tasks snapshot: none
 ## DevOps fallback cycle: 2026-02-21 09:29:20 UTC
 Open tasks snapshot: none
 
+## DevOps fallback cycle: 2026-02-21 09:30:16 UTC
+Open tasks snapshot:
+- 1) Дмитрий (DevOps): добавить endpoint /api/health/ с метаданными сервиса и состоянием БД для мониторинга. **Дедлайн:** 2026-02-22 21:29 UTC
+- 2) Дмитрий (DevOps): внедрить базовый audit trail для ключевых API действий и описать формат в README. **Дедлайн:** 2026-02-22 21:29 UTC
+
