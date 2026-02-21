@@ -1,11 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
 <h2>Сотрудники</h2>
-<ul class="list">
+
+<form method="get" class="employee-filters card">
+  <div class="filters-grid">
+    <input type="text" name="q" value="{{ q }}" placeholder="Поиск: ФИО, должность, email" />
+    <input type="text" name="department" value="{{ department }}" placeholder="Отдел" />
+    <button type="submit">Найти</button>
+  </div>
+</form>
+
+<div class="employees-grid">
   {% for e in employees %}
-  <li><strong>{{ e.full_name }}</strong> — {{ e.position }} ({{ e.department }}) · {{ e.email }}</li>
+  <article class="card employee-card">
+    <h3>{{ e.full_name }}</h3>
+    <p class="muted">{{ e.position }} · {{ e.department }}</p>
+    <p><a href="mailto:{{ e.email }}">{{ e.email }}</a></p>
+    {% if e.phone %}<p>{{ e.phone }}</p>{% endif %}
+  </article>
   {% empty %}
-  <li>Пока нет данных.</li>
+  <div class="card">Ничего не найдено. Уточните фильтры.</div>
   {% endfor %}
-</ul>
+</div>
+
+{% if is_paginated %}
+<nav class="pagination">
+  {% if page_obj.has_previous %}
+    <a href="?q={{ q }}&department={{ department }}&page={{ page_obj.previous_page_number }}">← Назад</a>
+  {% endif %}
+  <span>Страница {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+  {% if page_obj.has_next %}
+    <a href="?q={{ q }}&department={{ department }}&page={{ page_obj.next_page_number }}">Вперед →</a>
+  {% endif %}
+</nav>
+{% endif %}
 {% endblock %}
