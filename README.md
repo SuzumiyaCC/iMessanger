@@ -73,6 +73,7 @@ Quick-contact example:
   },
   "cta": {
     "type": "phone",
+    "preferred_channel": "phone",
     "link": "tel:+79990001122"
   }
 }
@@ -94,3 +95,31 @@ Quick-contact example:
 - File: `logs/audit.log` (JSONL)
 - Trigger: POST/PUT/PATCH/DELETE on `/api/*`
 - Fields: `ts`, `method`, `path`, `status`, `user`
+
+## QA smoke-run (Docker Compose, reproducible)
+```bash
+# 1) build + run
+cp .env.example .env
+docker compose up --build -d
+
+# 2) apply migrations
+docker compose exec web python manage.py migrate
+
+# 3) create demo user for token auth (if missing)
+docker compose exec web python manage.py shell -c "from django.contrib.auth import get_user_model; U=get_user_model(); U.objects.filter(username='qa').exists() or U.objects.create_user('qa', password='qa123456')"
+
+# 4) get token
+TOKEN=$(curl -s -X POST http://localhost:8000/api/auth/login/ \
+  -H 'Content-Type: application/json' \
+  -d '{"username":"qa","password":"qa123456"}' | python3 -c 'import sys,json; print(json.load(sys.stdin)["token"])')
+
+# 5) smoke checks
+curl -s "http://localhost:8000/api/employees/?q=ИВАН&department=РАЗРАБОТ&page=1&page_size=5" \
+  -H "Authorization: Token $TOKEN"
+
+curl -s "http://localhost:8000/api/employees/1/quick-contact/" \
+  -H "Authorization: Token $TOKEN"
+
+# 6) teardown
+docker compose down
+```
