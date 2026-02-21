@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ХрюшинИТ Portal</title>
+    <link rel="stylesheet" href="/static/css/app.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="wrap">
+        <h1>ХрюшинИТ Portal</h1>
+        <nav>
+          <a href="/">Главная</a>
+          <a href="/news/">Новости</a>
+          <a href="/employees/">Сотрудники</a>
+          <a href="/api/">API</a>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Новости</h2>
+<ul class="list">
+  {% for p in posts %}
+  <li><strong>{{ p.title }}</strong> — {{ p.summary }}</li>
+  {% empty %}
+  <li>Публикаций пока нет.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

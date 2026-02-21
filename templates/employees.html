@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Сотрудники</h2>
+<ul class="list">
+  {% for e in employees %}
+  <li><strong>{{ e.full_name }}</strong> — {{ e.position }} ({{ e.department }}) · {{ e.email }}</li>
+  {% empty %}
+  <li>Пока нет данных.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
