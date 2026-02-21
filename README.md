@@ -37,3 +37,11 @@ TOOL_EXEC_WRITE_OK
 - `GET /api/posts/?q=<title>`
 - `GET /api/posts/?author=<author>`
 - `GET /api/posts/?is_published=true|false`
+
+## Observability
+- `GET /api/health/` -> service metadata + DB status.
+
+## Audit trail
+- File: `logs/audit.log` (JSONL)
+- Trigger: POST/PUT/PATCH/DELETE on `/api/*`
+- Fields: `ts`, `method`, `path`, `status`, `user`
