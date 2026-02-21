@@ -33,6 +33,7 @@ Django-портал для внутренних новостей, блога и 
 - `GET /api/employees/?q=<text>` — search by full name, position or email
 - `GET /api/employees/?department=<name>` — filter by department
 - `GET /api/employees/?q=<text>&department=<name>&page=2&page_size=10` — combined filters + pagination
+- `GET /api/employees/<id>/quick-contact/` — быстрый контакт (phone/email/messenger + приоритетный CTA link)
 - API возвращает только активных сотрудников (`is_active=true`) для клиентского каталога.
 
 Example request:
@@ -56,6 +57,24 @@ Example response envelope:
       "department": "HR"
     }
   ]
+}
+```
+
+Quick-contact example:
+```json
+{
+  "id": 1,
+  "full_name": "Иван Иванов",
+  "quick_contact": {
+    "phone": "+79990001122",
+    "email": "ivanov@example.com",
+    "messenger": "@ivanov",
+    "messenger_link": "https://t.me/ivanov"
+  },
+  "cta": {
+    "type": "phone",
+    "link": "tel:+79990001122"
+  }
 }
 ```
 
